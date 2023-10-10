@@ -38,7 +38,7 @@ public class Calificacion {
 
     @ManyToOne
     @JoinColumn
-    private Empleado empleado_quecali;
+    private Usuario usuario_quecali;
 
     public Long getId_califi() {
         return id_califi;
@@ -72,11 +72,13 @@ public class Calificacion {
         this.cuanti_califi = cuanti_califi;
     }
 
-    public Empleado getEmpleado_quecali() {
-        return empleado_quecali;
+    public Usuario getUsuario_quecali() {
+        return usuario_quecali;
     }
 
-    public void setEmpleado_quecali(Empleado empleado_quecali) {
-        this.empleado_quecali = empleado_quecali;
+    public void setUsuario_quecali(Usuario usuario_quecali) {
+        this.usuario_quecali = usuario_quecali;
     }
+
+
 }

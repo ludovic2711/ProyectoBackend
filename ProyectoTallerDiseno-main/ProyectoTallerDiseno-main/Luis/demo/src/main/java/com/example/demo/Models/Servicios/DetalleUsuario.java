@@ -47,3 +47,8 @@ public class DetalleUsuario implements UserDetails {
         return true;
     }
 }
+
+
+
+
+

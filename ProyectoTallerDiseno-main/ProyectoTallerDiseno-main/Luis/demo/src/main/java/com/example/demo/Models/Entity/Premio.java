@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 // import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+import org.apache.tomcat.jni.User;
 import org.springframework.format.annotation.DateTimeFormat;
 // import org.springframework.lang.NonNull;
 
@@ -53,7 +54,7 @@ public class Premio {
      // ID_EMPLEADO_A_ENTREGAR
     @ManyToOne
     @JoinColumn
-    private Empleado empleado;
+    private Usuario usuario;
 
     public Long getId_prem() {
         return id_prem;
@@ -87,13 +88,6 @@ public class Premio {
         this.categoria = categoria;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
 
     
 }

@@ -28,7 +28,7 @@ public class Cargo {
     private String nombre_cargo;
 
     @OneToMany(mappedBy = "cargo", cascade = CascadeType.ALL)
-    private Set<Empleado> cargo;
+    private Set<Usuario> cargo;
 
     public Long getId_cargo() {
         return id_cargo;
@@ -46,11 +46,11 @@ public class Cargo {
         this.nombre_cargo = nombre_cargo;
     }
 
-    public Set<Empleado> getCargo() {
+    public Set<Usuario> getCargo() {
         return cargo;
     }
 
-    public void setCargo(Set<Empleado> cargo) {
+    public void setCargo(Set<Usuario> cargo) {
         this.cargo = cargo;
     }
 }

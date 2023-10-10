@@ -1,7 +1,11 @@
 package com.example.demo.Controllers;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +16,15 @@ import com.example.demo.Models.Repositorio.UserRepository;
 
 @Controller
 
-public class IndexController
-{
+public class IndexController {
     @Autowired
-    private UserRepository Aux; 
+    private UserRepository Aux;
+    @Autowired
+    private UserRepository Aux2;
 
     @GetMapping("/login")
 
-    public String login(Model model)
-    {
+    public String login(Model model) {
         model.addAttribute("titulo", "INICIAR SESIÓN");
 
         return "login";
@@ -28,49 +32,21 @@ public class IndexController
 
     @GetMapping("/logout")
 
-    public String logout()
-    {
+    public String logout() {
         return "login";
     }
 
     @GetMapping("/Index")
 
-    public String Home(Model model)
-    {
+    public String Home(Model model) {
         model.addAttribute("titulo", "BIENVENIDO");
 
         return "Index";
     }
 
-    @GetMapping("/formRegistro")
-    
-    public String Registro(Model model)
-    {
-        model.addAttribute("titulo", "FORMULARIO DE REGISTRO");
-        model.addAttribute("usuario", new Usuario());
-
-        return "formRegistro";
-    }
-
-    @PostMapping("/proceso_registro")
-    
-    public String Proceso_Registro(Usuario usuario,Model model)
-    {
-        model.addAttribute("titulo", "REGISTRO EXITOSO");
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPassword = encoder.encode(usuario.getPassword());
-        usuario.setPassword(encodedPassword);
-
-        Aux.save(usuario);
-
-        return "Registro_Exitoso";
-    }
-
     @GetMapping("/list_users")
 
-    public String Lista_Usuarios(Model model)
-    {
+    public String Lista_Usuarios(Model model) {
         model.addAttribute("titulo", "LISTA DE USUARIOS");
 
         List<Usuario> listaUsurios = Aux.findAll();
@@ -78,5 +54,19 @@ public class IndexController
         model.addAttribute("listUsers", listaUsurios);
 
         return "Usuarios";
+
     }
+
+    @GetMapping("/proceso")
+
+    public String procesoCon(Model model) {
+        Usuario user = new Usuario();
+        model.addAttribute("titulo", "CONFIRMACION DE USUARIO");
+        model.addAttribute("user", user);
+        return "proceso";
+    }
+
+
+  
+
 }

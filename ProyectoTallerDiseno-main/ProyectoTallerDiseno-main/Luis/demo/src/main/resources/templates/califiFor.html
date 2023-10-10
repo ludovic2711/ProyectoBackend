@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text=${titulo}>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/Estilo.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:insert="Base :: navBase"></div>
+    <form th:action="@{/procesoCalificacion}" th:object="${califi}" method="post">
+        <!-- EMPLEADO QUE CALIFICA -->
+        <select th:field="*{usuario_quecali}" hidden>
+            <option th:each="Calificador: ${Calificador}" th:text="${Calificador.nombre}" th:value="${Calificador.id_user}" ></option>
+        </select>
+
+
+        <label for="">Calificador:</label>
+        <input type="text" th:placeholder="${Calificador.nombre}">
+        <!-- EMPLEADO A CALIFICAR -->
+        <label for="">Seleccione un empleado:</label>
+        <select th:field="*{id_empleado_acali}">
+            <option th:each="persona: ${persona}" th:text="${persona.nombre}" th:value="${persona.id_user}" ></option>
+        </select>
+        <!-- DESCRIPCION -->
+        <label for="">Descripcion:</label>
+        <input type="text" th:field="*{descrip_califi}">
+        <!-- CUANTITATIVA -->
+        <label for="">Cuantitativa:</label>
+        <input type="number" th:field="*{cuanti_califi}">
+        <!-- BOTON -->
+        <input type="submit">
+    </form>
+</body>
+</html>

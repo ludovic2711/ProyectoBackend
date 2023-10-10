@@ -40,7 +40,7 @@ public class CargoController {
     public String editar(@PathVariable(value = "id") Long id, Model model) {
         Cargo cargo = new Cargo();
         if (id > 0) {
-            cargo = RepCar.getReferenceById(id);
+            cargo = RepCar.findById(id).get();
             // System.out.println("nombre"+ cargo.getNombre_cargo());
         } else {
             return "redirect:/CargoListar";
